@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const Registerurl = "https://airbnb-api.vercel.app/api/v1/auth/register";
-const Loginurl = "https://airbnb-api.vercel.app/api/v1/auth/login";
+const Registerurl = "https://airbnb-api-edidiesky.vercel.app/api/v1/auth/register";
+const Loginurl = "https://airbnb-api-edidiesky.vercel.app/api/v1/auth/login";
 
 export const registerCustomer = createAsyncThunk(
   "registerUser",
@@ -68,7 +68,7 @@ export const getAllCustomer = createAsyncThunk(
       };
       const { userpage } = state.user;
 
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/user?page=${userpage}`, config);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/user?page=${userpage}`, config);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -91,7 +91,7 @@ export const getUserStats = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/user/stats`, config);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/user/stats`, config);
       return data.usersStats;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -116,7 +116,7 @@ export const getSingleCustomer = createAsyncThunk(
       };
 
       const { data } = await axios.get(
-        `https://airbnb-api.vercel.app/api/v1/user/profile/${name}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/user/profile/${name}`,
         config
       );
       return data;
@@ -143,7 +143,7 @@ export const adminUpdateCustomer = createAsyncThunk(
       };
       const { _id } = state.user.userDetails;
       const { data } = await axios.put(
-        `https://airbnb-api.vercel.app/api/v1/user/admin/profile/${_id}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/user/admin/profile/${_id}`,
         Userformdata,
         config
       );
@@ -171,7 +171,7 @@ export const UpdateProfile = createAsyncThunk(
       };
       const { _id } = state.user.userInfo;
       const { data } = await axios.put(
-        `https://airbnb-api.vercel.app/api/v1/user/profile/${_id}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/user/profile/${_id}`,
         profiledata,
         config
       );
@@ -200,7 +200,7 @@ export const adminDeleteCustomer = createAsyncThunk(
       };
 
       const { data } = await axios.delete(
-        `https://airbnb-api.vercel.app/api/v1/user/admin/profile/${name}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/user/admin/profile/${name}`,
         config
       );
       return name;

@@ -6,7 +6,7 @@ export const getAllReviews = createAsyncThunk(
   "/fetch/allReviews",
   async (name, thunkAPI) => {
     try {
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/review/${name}`);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/review/${name}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -23,7 +23,7 @@ export const getSingleReviewsDetails = createAsyncThunk(
   "Reviews/getReviewsDetails",
   async (name, thunkAPI) => {
     try {
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/review/${name}`);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/review/${name}`);
 
       return data.gig;
     } catch (error) {
@@ -47,7 +47,7 @@ export const CreateSingleReview = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.post(`https://airbnb-api.vercel.app/api/v1/review`, ReviewsData, config);
+      const { data } = await axios.post(`https://airbnb-api-edidiesky.vercel.app/api/v1/review`, ReviewsData, config);
 
       return data.gig;
       // console.log(ReviewsData)
@@ -74,7 +74,7 @@ export const UpdateReview = createAsyncThunk(
       };
       const { _id } = state.gigs.ReviewsDetails;
       const { data } = await axios.put(
-        `https://airbnb-api.vercel.app/api/v1/review/${_id}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/review/${_id}`,
         ReviewsData,
         config
       );
@@ -102,7 +102,7 @@ export const DeleteReview = createAsyncThunk(
         },
       };
       const { data } = await axios.delete(
-        `https://airbnb-api.vercel.app/api/v1/review/${Reviewsid}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/review/${Reviewsid}`,
         config
       );
       return Reviewsid;
@@ -128,7 +128,7 @@ export const createReviewReviews = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        `https://airbnb-api.vercel.app/api/v1/review/review/${id}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/review/review/${id}`,
         Reviewdata,
         config
       );
@@ -154,7 +154,7 @@ export const getTopRatedReviews = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/review/rated`, config);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/review/rated`, config);
       return data.toprated;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -177,7 +177,7 @@ export const getReviewsStats = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/review/stats`, config);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/review/stats`, config);
       return data.stats;
     } catch (error) {
       return thunkAPI.rejectWithValue(

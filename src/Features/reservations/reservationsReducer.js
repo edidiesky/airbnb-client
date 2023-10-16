@@ -12,7 +12,7 @@ export const GetAllBuyerReservations = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      let ReservationsUrl = `https://airbnb-api.vercel.app/api/v1/reservations`;
+      let ReservationsUrl = `https://airbnb-api-edidiesky.vercel.app/api/v1/reservations`;
       const { data } = await axios.get(ReservationsUrl, config);
       return data.reservations;
     } catch (error) {
@@ -36,7 +36,7 @@ export const GetAllHostReservations = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      let ReservationsUrl = `https://airbnb-api.vercel.app/api/v1/reservations/host`;
+      let ReservationsUrl = `https://airbnb-api-edidiesky.vercel.app/api/v1/reservations/host`;
       const { data } = await axios.get(ReservationsUrl, config);
       return data.reservations;
     } catch (error) {
@@ -61,7 +61,7 @@ export const GetSingleBuyerReservations = createAsyncThunk(
       },
     };
     try {
-      let ReservationsUrl = `https://airbnb-api.vercel.app/api/v1/reservations/buyer/${name}`;
+      let ReservationsUrl = `https://airbnb-api-edidiesky.vercel.app/api/v1/reservations/buyer/${name}`;
       const { data } = await axios.get(ReservationsUrl, config);
       return data.reservations;
     } catch (error) {
@@ -86,7 +86,7 @@ export const CreateBuyerReservations = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        `https://airbnb-api.vercel.app/api/v1/reservations/${state.gigs.GigsDetails._id}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/reservations/${state.gigs.GigsDetails._id}`,
         reservationdata,
         config
       );
@@ -115,7 +115,7 @@ export const UpdateBuyerReservations = createAsyncThunk(
       };
       const { _id } = state.reservations.ReservationsDetails;
       const { data } = await axios.put(
-        `https://airbnb-api.vercel.app/api/v1/reservations/${_id}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/reservations/${_id}`,
         GigsData,
         config
       );
@@ -142,7 +142,7 @@ export const DeleteBuyerReservations = createAsyncThunk(
         },
       };
       const { data } = await axios.delete(
-        `https://airbnb-api.vercel.app/api/v1/reservations/${Reservationsid}`,
+        `https://airbnb-api-edidiesky.vercel.app/api/v1/reservations/${Reservationsid}`,
         config
       );
       return Reservationsid;
@@ -167,7 +167,7 @@ export const GetTopRatedBuyerReservations = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api.vercel.app/api/v1/gig/stats`, config);
+      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/gig/stats`, config);
       return data.stats;
     } catch (error) {
       return thunkAPI.rejectWithValue(
