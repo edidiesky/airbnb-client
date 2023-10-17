@@ -11,7 +11,7 @@ export const createCustomersOrder = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.post("https://airbnb-api-edidiesky.vercel.app/api/v1/order", orderData, config);
+      const { data } = await axios.post("${import.meta.env.VITE_API_BASE_URLS}/api/v1/order", orderData, config);
 
       return data;
     } catch (error) {
@@ -33,7 +33,7 @@ export const createStripeIntent = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.post("https://airbnb-api-edidiesky.vercel.app/api/v1/stripe", orderData, config);
+      const { data } = await axios.post("${import.meta.env.VITE_API_BASE_URLS}/api/v1/stripe", orderData, config);
 
       return data.url;
     } catch (error) {
@@ -55,7 +55,7 @@ export const getCustomerOrderById = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/order/${id}`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/order/${id}`, config);
 
       return data.order;
     } catch (error) {
@@ -78,7 +78,7 @@ export const getCustomerOrderStats = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/order/stats`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/order/stats`, config);
 
       return data.totalOrder;
     } catch (error) {
@@ -101,7 +101,7 @@ export const getCustomerOrder = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/order/customer/order`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/order/customer/order`, config);
 
       return data.order;
     } catch (error) {
@@ -126,7 +126,7 @@ export const getAllCustomersOrder = createAsyncThunk(
       };
       const { orderpage } = state.order;
       const { data } = await axios.get(
-        `https://airbnb-api-edidiesky.vercel.app/api/v1/order?page=${orderpage}`,
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/order?page=${orderpage}`,
         config
       );
 
@@ -152,7 +152,7 @@ export const updateCustomersOrderToPaid = createAsyncThunk(
         },
       };
       const { data } = await axios.put(
-        `https://airbnb-api-edidiesky.vercel.app/api/v1/order/${details}/pay`, 
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/order/${details}/pay`, 
         null,
         config
       );
@@ -178,7 +178,7 @@ export const getSellerOrder = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`https://airbnb-api-edidiesky.vercel.app/api/v1/order/seller/order`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/order/seller/order`, config);
 
       return data.order;
     } catch (error) {
@@ -203,7 +203,7 @@ export const updateCustomersOrderToIsDelivered = createAsyncThunk(
       };
       const { _id } = state.order.order;
       const { data } = await axios.put(
-        `https://airbnb-api-edidiesky.vercel.app/api/v1/order/${_id}/delivered`,
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/order/${_id}/delivered`,
         name,
         config
       );
