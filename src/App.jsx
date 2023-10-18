@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./index.css";
 import {
