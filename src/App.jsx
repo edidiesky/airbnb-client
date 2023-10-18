@@ -1,9 +1,6 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import AOS from "aos";
 import "./index.css";
-
-import "aos/dist/aos.css";
 import {
   Layout,
   Home,
@@ -53,17 +50,6 @@ const LayoutSecurity = lazy(() => import("./screens/account/Layout"));
 
 export default function App() {
   const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    AOS.init({
-      once: true,
-    });
-  }, []);
-
-  // // console.log(process.env.map_box_token)
-  // const apiKey = import.meta.env.map_box_token;
-
-  // console.log(apiKey);
 
   return (
     <div className="based" style={{ height }}>
