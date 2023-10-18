@@ -11,7 +11,7 @@ export const createCustomersOrder = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.post("${import.meta.env.VITE_API_BASE_URLS}/api/v1/order", orderData, config);
+      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/order`, orderData, config);
 
       return data;
     } catch (error) {
@@ -33,7 +33,7 @@ export const createStripeIntent = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.post("${import.meta.env.VITE_API_BASE_URLS}/api/v1/stripe", orderData, config);
+      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/stripe`, orderData, config);
 
       return data.url;
     } catch (error) {

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const Registerurl = "${import.meta.env.VITE_API_BASE_URLS}/api/v1/auth/register";
-const Loginurl = "${import.meta.env.VITE_API_BASE_URLS}/api/v1/auth/login";
+const Registerurl = `${import.meta.env.VITE_API_BASE_URLS}/api/v1/auth/register`;
+const Loginurl = `${import.meta.env.VITE_API_BASE_URLS}/api/v1/auth/login`;
 
 export const registerCustomer = createAsyncThunk(
   "registerUser",
