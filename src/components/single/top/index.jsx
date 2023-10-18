@@ -11,7 +11,7 @@ const TopIndex = () => {
   return (
     <div className="w-100 flex column gap-2">
       <div className="flex w-100 column" style={{ gap: ".4rem" }}>
-        <h2 className="fs-25">{GigsDetails?.listing_title}</h2>
+        <h2 className="fs-25 text-bold">{GigsDetails?.listing_title}</h2>
         <div style={{ flexWrap: "wrap" }} className="w-100 flex item-center">
           <h5
             className="fs-16 flex item-center text-dark text-bold"

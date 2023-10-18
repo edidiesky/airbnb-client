@@ -14,7 +14,7 @@ const SingleIndex = () => {
         {gigsIsLoading ? (
           <DetailsLoading />
         ) : (
-          <div className="w-85 flex column gap-2 auto">
+          <div className="w-100 flex column gap-2 auto">
             <TopIndex />
             <CenterIndex />
             <BottomIndex />

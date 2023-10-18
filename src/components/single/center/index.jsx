@@ -41,7 +41,7 @@ const CenterIndex = () => {
     endDate: moment(dateRange.selection.endDate).format("DD/MM/YYYY"),
     qty: 1,
   };
-  console.log(data)
+  // console.log(data)
 
   useEffect(() => {
     const backendStartDate = moment(GigsDetails?.listing_startDate).toDate();
@@ -142,11 +142,20 @@ const CenterWrapper = styled.div`
       display: flex;
       flex-direction: column-reverse;
     }
+    @media (max-width: 780px) {
+      min-height: 0vh;
+    }
   }
   .listing_prop {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    .cardItem {
+      @media (max-width: 580px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   }
   .center_left_top {
     @media (max-width: 580px) {

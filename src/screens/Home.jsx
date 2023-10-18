@@ -83,14 +83,14 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [setLoader]);
 
-   useEffect(() => {
-     if (showAlert) {
-       const timeout = setTimeout(() => {
-         dispatch(clearGigsAlert())
-       }, 6000);
-       return () => clearTimeout(timeout);
-     }
-   }, [showAlert]);
+  useEffect(() => {
+    if (showAlert) {
+      const timeout = setTimeout(() => {
+        dispatch(clearGigsAlert());
+      }, 6000);
+      return () => clearTimeout(timeout);
+    }
+  }, [showAlert]);
 
   useEffect(() => {
     dispatch(getStartDate(startDate));
@@ -108,6 +108,7 @@ export default function Home() {
         <>
           <Meta />
           <Header
+            type={"Home"}
             adults={adults}
             children={children}
             infants={infants}

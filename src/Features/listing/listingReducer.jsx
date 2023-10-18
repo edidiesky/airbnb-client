@@ -23,7 +23,7 @@ export const getAllGigs = createAsyncThunk(
         sellerId,
       } = thunkAPI.getState().gigs;
       const limit = listing_children + listing_adults;
-      let GigsUrl = `${import.meta.env.VITE_API_BASE_URLS}/v1/listing`;
+      let GigsUrl = `${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing`;
       if (sort) {
         productUrl = productUrl + `?sort=${sort}`;
       }
@@ -111,7 +111,7 @@ export const getSingleGigsDetails = createAsyncThunk(
   "Gigs/getGigsDetails",
   async (name, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/v1/listing/${name}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/${name}`);
 
       return data.gig;
     } catch (error) {
@@ -129,7 +129,7 @@ export const getHostListing = createAsyncThunk(
   "Gigs/getHostListing",
   async (name, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/v1/listing/host/${name}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/host/${name}`);
 
       return data.gig;
     } catch (error) {
@@ -153,7 +153,7 @@ export const CreateSingleGig = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URLS}/v1/listing`, GigsData, config);
+      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing`, GigsData, config);
 
       return data.gig;
       // console.log(GigsData)
@@ -180,7 +180,7 @@ export const UpdateGig = createAsyncThunk(
       };
       const { _id } = state.gigs.GigsDetails;
       const { data } = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URLS}/v1/listing/${_id}`,
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/${_id}`,
         GigsData,
         config
       );
@@ -207,7 +207,7 @@ export const DeleteGig = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.delete(`${import.meta.env.VITE_API_BASE_URLS}/v1/listing/${Gigsid}`, config);
+      const { data } = await axios.delete(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/${Gigsid}`, config);
       return Gigsid;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -231,7 +231,7 @@ export const createReviewGigs = createAsyncThunk(
         },
       };
       const { data } = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URLS}/v1/listing/review/${id}`,
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/review/${id}`,
         Reviewdata,
         config
       );
@@ -257,7 +257,7 @@ export const getTopRatedGigs = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/v1/listing/rated`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/rated`, config);
       return data.toprated;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -280,7 +280,7 @@ export const getGigsStats = createAsyncThunk(
           authorization: `Bearer ${state.user.token}`,
         },
       };
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/v1/listing/stats`, config);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/stats`, config);
       return data.stats;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -304,7 +304,7 @@ export const addListToWish = createAsyncThunk(
         },
       };
       const { data } = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URLS}/v1/listing/wish/${name}`,
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/wish/${name}`,
         null,
         config
       );
@@ -333,7 +333,7 @@ export const getUserListingWishlist = createAsyncThunk(
         },
       };
       const { data } = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URLS}/v1/listing/wish`,
+        `${import.meta.env.VITE_API_BASE_URLS}/api/v1/listing/wish`,
         config
       );
       return data.listing;

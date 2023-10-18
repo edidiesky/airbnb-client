@@ -57,8 +57,7 @@ const ProfileIndexContent = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 1rem;
     @media (max-width: 750px) {
-      padding-bottom: .5rem;
-
+      padding-bottom: 0.5rem;
     }
   }
   .avatar {
@@ -93,7 +92,6 @@ const ProfileIndexContent = styled.div`
   .authCenter {
     padding: 3rem 2rem;
     width: 350px;
-    margin: 0 auto;
     box-shadow: 0 19px 39px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     margin: 1.4rem auto;
@@ -102,8 +100,9 @@ const ProfileIndexContent = styled.div`
       width: 70%;
     }
     @media (max-width: 450px) {
-      width: 90%;
-      gap:1rem;
+      padding: 3rem 1rem;
+      width: 96%;
+      gap: 1rem;
     }
   }
   .grid-auto {

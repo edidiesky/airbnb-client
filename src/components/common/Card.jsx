@@ -235,7 +235,6 @@ export default function Card({ x, index, type }) {
             <Link
               to={`/rooms/${x?._id}`}
               className="flex column"
-              style={{ gap: "4px" }}
               // style={{ gap: ".2rem" }}
             >
               <div
@@ -243,7 +242,7 @@ export default function Card({ x, index, type }) {
                 className="w-100 flex item-center justify-space cardTop"
               >
                 <h4
-                  className="fs-14 text-extra-bold text-dark"
+                  className="fs-17 text-extra-bold text-dark"
                 >
                   {x?.listing_city}, {x?.listing_country}
                 </h4>
@@ -255,7 +254,7 @@ export default function Card({ x, index, type }) {
                   4.98
                 </div>
               </div>
-              <div style={{ gap: "3px" }} className="flex column">
+              <div className="flex column">
                 <h4 className="text-grey fs-14 text-light">
                   {x?.listing_distance} kilometers away
                 </h4>
@@ -279,6 +278,9 @@ export default function Card({ x, index, type }) {
 const CardContent = styled.div`
   width: 100%;
   overflow: hidden;
+  .fs-17 {
+    font-size: 17px;
+  }
   .custom_nav_wrapper {
     position: absolute;
     bottom: 5%;
@@ -339,6 +341,9 @@ const CardContent = styled.div`
     border-radius: 10px;
     height: 18rem;
     position: relative;
+    @media (max-width: 480px) {
+      height: 13rem;
+    }
     .detailsImageWrapper {
       width: 100%;
       position: relative;
@@ -551,6 +556,9 @@ const CardContent = styled.div`
     width: 100%;
     transition: all 0.4s;
     overflow: hidden;
+    @media (max-width: 480px) {
+      min-height: 15rem;
+    }
     &:hover .delete {
       opacity: 1;
       visibility: visible;

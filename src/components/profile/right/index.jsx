@@ -99,8 +99,8 @@ export default function ProfileRightIndex() {
           )}
         </div>
         {/* host lisitng */}
-        <div className="flex column bottom gap-1">
-          <h3 className="fs-24 text-bold">{userDetails?.firstname}'s listings</h3>
+        <div className="flex column bottom gap-2">
+          <h3 className="fs-24 text-bold py-2">{userDetails?.firstname}'s listings</h3>
           <SliderIndex options={options1}>
             {Gigs?.length > 0 ? (
               Gigs?.map((x, index) => {
@@ -168,7 +168,7 @@ const ProfileRightIndexContent = styled.div`
   }
   .owl-nav {
     position: absolute;
-    top: -15%;
+    top: -10%;
     width: 100%;
     right: 1%;
     z-index: 10;

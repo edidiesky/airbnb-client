@@ -1,23 +1,23 @@
 export const options2 = {
-  items: 12,
+  items: 8,
   nav: true,
   dots: false,
   loop: true,
   // margin: 10,
   width: "100%",
-  slideBy: 10,
+  slideBy: 8,
   responsive: {
     0: {
       items: 4,
     },
     460: {
-      items: 6,
+      items: 5,
     },
     760: {
-      items: 8,
+      items: 6,
     },
     1024: {
-      items: 12,
+      items: 8,
     },
   },
 };

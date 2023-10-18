@@ -28,7 +28,7 @@ const RightCenter = ({ limit, dateRange, handleCreateReservation }) => {
   }, [ReservationsDetails, ReservationsIsSuccess, navigate]);
 
   const formatDate = (date) => {
-    return moment(date).format("MMMM Do YYYY");
+    return moment(date).format("MMM D");
   };
   const dispatch = useDispatch();
   const differnceinDays = Math.round(
@@ -73,12 +73,12 @@ const RightCenter = ({ limit, dateRange, handleCreateReservation }) => {
               className="dateWrapper flex item-center gap-1 justify-space"
             >
               <div
-                style={{ padding: ".7rem" }}
+                style={{ padding: ".7rem",
+              lineHeight:"20px" }}
                 className="fs-10 flex-1 text-extra-bold "
               >
-                <span className="uppercase">check-in</span>
-
-                <div className="fs-12 block capitalize text-dark text-light">
+                <div className="fs-14 block capitalize text-dark text-light">
+                  <span className="uppercase fs-10 block">check-in</span>
                   {formatDate(dateRange.selection.startDate)}
                 </div>
               </div>{" "}
@@ -87,11 +87,12 @@ const RightCenter = ({ limit, dateRange, handleCreateReservation }) => {
                   padding: ".7rem",
                   borderLeft: "1px solid rgba(0,0,0,.3)",
                   height: "100%",
+                  lineHeight:"20px"
                 }}
                 className=" fs-10 text-start flex-1 wrap family1 text-extra-bold "
               >
-                <span className="uppercase">check-out</span>
                 <div className="fs-12 block capitalize text-dark text-light">
+                  <span className="uppercase fs-10 block">check-out</span>
                   {formatDate(dateRange.selection.endDate)}
                 </div>
               </div>
@@ -178,6 +179,37 @@ const RightCenter = ({ limit, dateRange, handleCreateReservation }) => {
           </h4>
         </div>
       </div>
+      <div className="smallRCard flex item-center justify-space">
+        <div className="w-90 auto flex item-center justify-space">
+          <div className="flex column">
+            <h4 className="fs-24 text-dark text-extra-bold">
+              ${GigsDetails?.listing_price}{" "}
+              <span className="text-dark text-bold fs-12"> night</span>
+            </h4>
+            <div className=" flex item-center">
+              <div className="fs-14 block capitalize text-dark text-light">
+                {formatDate(dateRange.selection.startDate)}
+              </div>
+              <div className="text-light fs-16"> - </div>
+              <div className="fs-14 block capitalize text-dark text-light">
+                {formatDate(dateRange.selection.endDate)}
+              </div>
+            </div>
+          </div>
+          <div
+            onClick={handleCreateReservation}
+            className="reserveBtn fs-16 text-bold text-white flex justify-center item-center"
+          >
+            {ReservationsIsLoading ? (
+              <span className="flex w-85 auto gap-2 item-center justify-center">
+                Processing <LoaderIndex color={"#Fff"} type={"dots"} />
+              </span>
+            ) : (
+              "Reserve"
+            )}
+          </div>
+        </div>
+      </div>
     </RigthWrapper>
   );
 };
@@ -191,8 +223,25 @@ const RigthWrapper = styled.div`
     top: 10%;
     width: 370px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    @media (max-width:580px) {
+    @media (max-width: 780px) {
       width: 90%;
+    }
+    display: flex;
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
+  .smallRCard {
+    position: fixed;
+    bottom: 0;
+    min-height: 5rem;
+    width: 100%;
+    left: 0;
+    background-color: #ffffff3b;
+    backdrop-filter: blur(15px);
+    display: none;
+    @media (max-width: 780px) {
+      display: flex;
     }
   }
 
@@ -212,7 +261,7 @@ const RigthWrapper = styled.div`
     border-radius: 10px;
     color: #fff !important;
     color: #fff;
-    /* padding: 0.8rem 2rem; */
+    padding: 0.8rem 1rem;
     border-radius: 10px;
     cursor: pointer;
     &:hover {

@@ -16,7 +16,7 @@ export default function RightIndex() {
       <div className="Right flex gap-1 column">
         <div className="w-100 border flex column gap-1">
           <div className="w-100 flex bottom item-start gap-1">
-            <div className="flex w-100 item-start gap-1">
+            <div className="flex w-100 listing_card item-center gap-1">
               <div className="detailsImageWrapper">
                 {ReservationsDetails?.listing_Id?.listing_image?.map(
                   (x, index) => {
@@ -24,7 +24,7 @@ export default function RightIndex() {
                   }
                 )}
               </div>
-              <h4 className="fs-16 w-100 text-dark text-light">
+              <h4 className="fs-18 w-100 text-dark text-light">
                 <span className="block fs-12 text-dark text-light">
                   Room in bed and breakfast
                 </span>
@@ -88,6 +88,12 @@ export default function RightIndex() {
 
 const RightIndexContent = styled.div`
   width: 100%;
+  .listing_card {
+    @media (max-width: 580px) {
+     flex-direction: column;
+     align-items: flex-start;
+    }
+  }
   .Right {
     position: sticky;
     top: 10%;

@@ -6,6 +6,7 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
+
 export default function NewDateInput({focusedInput, startDate, endDate,setFocusedInput, setDates, type }) {
   return (
     <>

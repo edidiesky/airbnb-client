@@ -21,6 +21,7 @@ import Filter from "./svg/filter";
 import { getLsitingType } from "../../Features/listing/listingSlice";
 import { getAllGigs } from "../../Features/listing/listingReducer";
 import Dropdown from "./Dropdown";
+import { BiChevronLeft } from "react-icons/bi";
 
 export default function ListingHeader({
   type,
@@ -29,6 +30,7 @@ export default function ListingHeader({
   adults,
   infants,
   children,
+  path,
 }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -146,26 +148,40 @@ export default function ListingHeader({
         }
       >
         <div className="flex w-90 auto headertop1 flex-1 item-center justify-end">
-          <div className="center justify-space w-100 flex item-center gap-1">
-            <div className="flex item-center gap-2 ">
-              <HiSearch color="#000" fontSize={"20px"} />
-              <div className="fs-13 text-dark text-bold">
-                Anywhere
-                <span
-                  style={{ gap: ".3rem" }}
-                  className="text-light fs-12 text-grey flex item-center"
-                >
-                  {/* {startDate !== undefined
+          {type !== "Home" && (
+            <Link
+              to={`/${path}`}
+              className="fs-16 text-bold gap-1 w-85 auto flex item-center"
+            >
+              <BiChevronLeft fontSize={"20px"} /> {type}
+            </Link>
+          )}
+
+          {type === "Home" && (
+            <div className="w-100">
+              <div className="center justify-space w-100 flex item-center gap-1">
+                <div className="flex item-center gap-2 ">
+                  <HiSearch color="#000" fontSize={"20px"} />
+                  <div className="fs-14 text-dark text-extra-bold">
+                    Anywhere
+                    <span
+                      style={{ gap: ".2rem" }}
+                      className="text-light fs-12 text-grey flex item-center"
+                    >
+                      {/* {startDate !== undefined
                     ? startDate - endDate
                     : startDate - endDate}{" "} */}
-                  <span> . </span> <span>Add guests</span>
-                </span>
+                      <span>Add week</span> <span> . </span>{" "}
+                      <span>Add guests</span>
+                    </span>
+                  </div>
+                </div>
+                <div className="icons flex item-center justify-center">
+                  <Filter />
+                </div>
               </div>
             </div>
-            <div className="icons flex item-center justify-center">
-              <Filter />
-            </div>
-          </div>
+          )}
         </div>
         <div
           className={
@@ -186,7 +202,7 @@ export default function ListingHeader({
               <h4 className="fs-18 text-light text-center">Stays</h4>
             </div>
           )} */}
-          {!type && (
+          {type === "Home" && (
             <div
               onClick={() => setSearch(true)}
               className="flex item-center justify-end"
@@ -232,7 +248,7 @@ export default function ListingHeader({
             </div>
             <div
               onClick={() => setDrop(!drop)}
-              style={{gap:".5rem"}}
+              style={{ gap: ".5rem" }}
               className="center2 flex item-center"
             >
               <Bar />
@@ -307,7 +323,7 @@ export default function ListingHeader({
         }
       >
         <div className="w-90 auto  bottomWrapper item-center justify-space">
-          <div className="w-100 hidden">
+          <div className="w-100 listing_icons hidden">
             <SliderIndex options={options2}>
               {categorydata.map((x, index) => {
                 return loader ? (
@@ -350,9 +366,17 @@ export default function ListingHeader({
             </SliderIndex>
           </div>
           <div className="fiterWrapper flex item-center justify-end">
-            <div className="fs-12 fiterIcon gap-1 text-dark flex item-center justify-center">
+            <div className="fs-12 text-bold fiterIcon gap-1 text-dark flex item-center justify-center">
               <Filter />
               Fiters
+            </div>
+          </div>
+          <div className="fiterWrapper flex item-center justify-end">
+            <div className="fs-12 text-bold fiterIcon gap-1 text-dark flex item-center justify-center">
+              Display before total taxes
+              <div className="rightIcons">
+                <div className="icons"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -363,7 +387,7 @@ export default function ListingHeader({
   return (
     <HeaderWrapper>
       <HeaderTop />
-      {!type && <HeaderBottom />}
+      {type === "Home" && <HeaderBottom />}
     </HeaderWrapper>
   );
 }
@@ -382,19 +406,42 @@ const HeaderWrapper = styled.div`
   }
   .bottomWrapper {
     display: grid;
-    grid-template-columns: 1fr 6vw;
-    grid-gap: 3rem;
+    grid-template-columns: 1fr 50px 270px;
+    grid-gap: 1.5rem;
     padding-top: 0.6rem;
     @media (max-width: 1080px) {
       grid-template-columns: 1fr;
     }
   }
+  .rightIcons {
+    padding-left: 1.6rem;
+    .icons {
+      width: 3rem;
+      height: 1.6rem;
+      border-radius: 40px;
+      background-color: #bfbdbddb;
+      position: relative;
+      &::after {
+        width: 50%;
+        height: 80%;
+        content: "";
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #fff;
+        border-radius: inherit;
+      }
+    }
+  }
   .fiterIcon {
-    padding: 0.9rem 1rem;
+    padding: 0.8rem 1rem;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     border-radius: 15px;
   }
-  .fiterWrapper {
+  .listing_icons{
+    margin-right: 10rem;
+  } .fiterWrapper {
     /* width: 300px; */
     /* background-color: red; */
     @media (max-width: 1080px) {
@@ -423,20 +470,27 @@ const HeaderWrapper = styled.div`
   }
   .headertop1 {
     display: none;
-
+    padding: 0.7rem 0;
+    @media (max-width: 580px) {
+      padding: 0.4rem 0;
+    }
     .center {
       padding: 0.6rem 1.3rem !important;
       width: 90% !important;
       margin: 0 auto !important;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
       border: 0.5px solid rgba(0, 0, 0, 0.08) !important;
+      @media (max-width: 580px) {
+        padding: 0.4rem 2rem !important ;
+        border: none;
+      }
     }
-    @media (max-width: 780px) {
+    @media (max-width: 580px) {
       display: flex;
     }
   }
   .headertop2 {
-    @media (max-width: 780px) {
+    @media (max-width: 480px) {
       display: none;
     }
   }
@@ -542,7 +596,7 @@ const HeaderWrapper = styled.div`
   }
   .left,
   .right {
-    @media (max-width: 780px) {
+    @media (max-width: 480px) {
       display: none;
     }
   }
@@ -667,7 +721,7 @@ const HeaderWrapper = styled.div`
       left: 0%;
     }
     button.owl-next {
-      right: -0%;
+      right: 3%;
     }
   }
 `;

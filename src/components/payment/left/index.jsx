@@ -147,9 +147,9 @@ export default function SingleLeftIndex({ id }) {
   }, [url]);
 
   const startDate = moment(daterange.selection.startDate).format(
-    "MMMM Do YYYY"
+    "MMM D"
   );
-  const endDate = moment(daterange.selection.endDate).format("MMMM Do YYYY");
+  const endDate = moment(daterange.selection.endDate).format("MMM D");
   return (
     <div>
       <Message
@@ -193,7 +193,7 @@ export default function SingleLeftIndex({ id }) {
           className="flex w-100 column gap-1 bottom"
           style={{ paddingBottom: "1.6rem" }}
         >
-          <h3 className="fs-20">Your trip</h3>
+          <h3 className="fs-20 text-extra-bold">Your trip</h3>
           <div className="w-100 flex column gap-1">
             <div className="w-100 flex item-center justify-space">
               <h4 className="fs-18 text-bold">
@@ -237,7 +237,7 @@ export default function SingleLeftIndex({ id }) {
         </div>
         {/* policy */}
         <div className="flex column gap-1 bottom">
-          <h3 className="fs-20">Cancellation policy</h3>
+          <h3 className="fs-20 text-extra-bold">Cancellation policy</h3>
           <h4 className="fs-14 family1 text-light">
             <span className="text-bold" style={{ textDecoration: "underline" }}>
               Free cancellation before Nov 9.
@@ -250,7 +250,7 @@ export default function SingleLeftIndex({ id }) {
         </div>
         {/* rules */}
         <div className="flex column bottom">
-          <h3 className="fs-20">Ground rules</h3>
+          <h3 className="fs-20 text-extra-bold">Ground rules</h3>
           <h4 className="fs-16 text-light">
             We ask every guest to remember a few simple things about what makes
             a great guest.
@@ -285,7 +285,7 @@ export default function SingleLeftIndex({ id }) {
           damage.
         </h5>
         <div className="w-50 flex item-center">
-          <div onClick={handleOrderCreation} className="btn fs-16 text-white">
+          <div onClick={handleOrderCreation} className="btn text-bold fs-16 text-white">
             {orderisLoading ? (
               <span className="flex w-100 gap-2 item-center justify-space">
                 Processing <LoaderIndex color={'#Fff'} type={"dots"} />

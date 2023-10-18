@@ -93,6 +93,9 @@ const FooterWrapper = styled.div`
   width: 100%;
   padding: 3rem 0;
   background-color: #f7f7f7;
+  @media (max-width: 780px) {
+   display: none;
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

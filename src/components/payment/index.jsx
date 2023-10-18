@@ -22,7 +22,7 @@ export default function PaymentIndex() {
   return (
     <PaymentIndexContent>
       <div className="w-90 auto flex column">
-        <h3 className="fs-30 w-90 auto flex item-center gap-1">
+        <h3 className="fs-30 path w-90 auto flex item-center gap-1">
           <Link
             to={`/rooms/${GigsDetails?._id}`}
             className="icon flex item-center justify-center"
@@ -43,6 +43,14 @@ export default function PaymentIndex() {
 const PaymentIndexContent = styled.div`
   width: 100%;
   padding-top: 2rem;
+  @media (max-width: 780px) {
+    padding-top: 0rem;
+  }
+  .path {
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
   .edit {
     cursor: pointer;
   }

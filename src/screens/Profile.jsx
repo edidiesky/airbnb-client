@@ -7,7 +7,7 @@ export default function Profile() {
   return (
     <>
       <Meta title={"Host Profile - Airbnb"} />
-      <Header type={"type"} />
+      <Header type={""} path={''} />
       <PaymentContainer style={{minHeight:"100vh"}}>
         <ProfileIndex />
       </PaymentContainer>

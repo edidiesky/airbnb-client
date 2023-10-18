@@ -14,7 +14,7 @@ const Reservations = () => {
   return (
     <>
       <Meta title={"Your lists . Reservations lists - Airbnb"} />
-      <Header type={"type"} />
+      <Header type={""} path={''} />
       <div className="w-100" style={{ minHeight: "100vh", paddingTop: "8rem" }}>
         <ReservationsIndex />
       </div>

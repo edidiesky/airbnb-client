@@ -51,48 +51,47 @@ const offerdata = [
 
 const LeftCenter = ({ handleSelect, dateRange }) => {
   const { GigsDetails } = useSelector((store) => store.gigs);
-  const startDate = moment(dateRange.selection.startDate).format('MMMM Do YYYY')
-  const endDate = moment(dateRange.selection.endDate).format('MMMM Do YYYY')
+  const startDate = moment(dateRange.selection.startDate).format('MMM D YYYY')
+  const endDate = moment(dateRange.selection.endDate).format('MMM D YYYY')
  
  
   const differnceinDays = Math.round(
-    (moment(dateRange.selection.endDate, "DD/MM/YYYY") -
-      moment(dateRange.selection.startDate, "DD/MM/YYYY")) /
+    (moment(dateRange.selection.endDate, "DD/MM") -
+      moment(dateRange.selection.startDate, "DD/MM")) /
       (1000 * 3600 * 20)
   );
   return (
-    <div className="flex column gap-2">
+    <div className="flex column gap-1">
       <div
-        style={{ flexWrap: "wrap" }}
-        className="w-100 flex gap-1 center_left_top bottom item-center justify-space"
+        className="w-100 flex center_left_top bottom item-start column"
       >
-        <h3 className="flex-1 text-dark text-bold" style={{ fontSize: "27px" }}>
-          {GigsDetails?.listing_title}
-          <span className="block fs-14 text-dark text-bold">
-            <span>4 guests</span> <span>. 2 bedrooms</span>{" "}
-            <span>. 4 beds</span> <span>. 4 baths</span>
-          </span>
-        </h3>
-        <div className="justify-end flex-1 flex">
-          <Link
-            to={`/users/show/${GigsDetails?.listing_host_Id?._id}`}
-            className="imageWrapper avatar relative"
-          >
-            <div className="imageGradient absolute w-100 h-100"></div>
-            <img
-              src={GigsDetails?.listing_host_Id?.image}
-              alt=""
-              className="w-100 h-100 absolute"
-            />
-          </Link>
+        <div className="flex item-center w-100 justify-space">
+          <h3 className="flex-1 fs-24 text-dark text-bold">
+            {GigsDetails?.listing_title}
+          </h3>
+          <div className="justify-end flex">
+            <Link
+              to={`/users/show/${GigsDetails?.listing_host_Id?._id}`}
+              className="imageWrapper avatar relative"
+            >
+              <div className="imageGradient absolute w-100 h-100"></div>
+              <img
+                src={GigsDetails?.listing_host_Id?.image}
+                alt=""
+                className="w-100 h-100 absolute"
+              />
+            </Link>
+          </div>
         </div>
+        <span className="block fs-16 text-dark text-light">
+          <span>4 guests</span> <span>. 2 bedrooms</span> <span>. 4 beds</span>{" "}
+          <span>. 4 baths</span>
+        </span>
       </div>
-      <div
-        
-        className=" listing_prop item-center bottom w-100"
-      >
+
+      <div className=" listing_prop item-center bottom w-100">
         <div
-          className="flex item-center gap-1"
+          className="flex cardItem item-center gap-1"
           style={{
             padding: "1.5rem 2rem",
             border: "1px solid rgba(0,0,0,.1)",
@@ -101,13 +100,13 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
           }}
         >
           <Room />
-          <h4 className="text-dark text-bold fs-14  ">
+          <h4 className="text-dark text-bold fs-16  ">
             Bedroom
             <span className="block fs-14 text-grey text-light">1 king bed</span>
           </h4>
         </div>{" "}
         <div
-          className="flex item-center gap-1"
+          className="flex cardItem item-center gap-1"
           style={{
             padding: "1.5rem 2rem",
             border: "1px solid rgba(0,0,0,.1)",
@@ -116,13 +115,13 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
           }}
         >
           <Room />
-          <h4 className="text-dark text-bold fs-14  ">
+          <h4 className="text-dark text-bold fs-16  ">
             Bedroom
             <span className="block fs-14 text-grey text-light">1 king bed</span>
           </h4>
         </div>{" "}
         <div
-          className="flex item-center gap-1"
+          className="flex cardItem item-center gap-1"
           style={{
             padding: "1.5rem 2rem",
             border: "1px solid rgba(0,0,0,.1)",
@@ -131,7 +130,7 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
           }}
         >
           <Room />
-          <h4 className="text-dark text-bold fs-14  ">
+          <h4 className="text-dark text-bold fs-16  ">
             Bedroom
             <span className="block fs-14 text-grey text-light">1 king bed</span>
           </h4>
@@ -143,7 +142,7 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
           <Key />
           <span className="text-dark text-bold">
             Lanzarote Van Campers is a Superhost
-            <div className="block text-grey fs-14 w-85 text-light">
+            <div className="block text-grey fs-16 w-85 text-light">
               Superhosts are experienced, highly rated hosts who are committed
               to providing great stays for guests.
             </div>
@@ -153,7 +152,7 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
           <Location />
           <span className="text-dark text-bold">
             Great location
-            <div className="block text-grey fs-14 text-light">
+            <div className="block text-grey fs-16 text-light">
               100% of recent guests gave the location a 5-star rating.
             </div>
           </span>
@@ -165,10 +164,10 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
       </ul>
       {/* <Profile /> */}
       {/* description */}
-      <h4 className="fs-16 bottom text-dark text-bold text-light">
+      <h4 className="fs-18 bottom text-dark text-bold text-light">
         Fully equipped large-volume camper van converted in 2021.
         <br />
-        {GigsDetails?.listing_description}
+        {GigsDetails?.listing_description?.substring(0, 300)}
       </h4>
 
       {/* special offers */}
@@ -178,14 +177,14 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
       <div className="flex column gap-2 bottom w-100">
         <h3 className="fs-20 text-dark text-bold">What this place offers</h3>
         <ul
-          className="grid w-100"
+          className="grid w-85"
           style={{ gridTemplateColumns: "1fr 1fr", gridGap: "1rem" }}
         >
           {offerdata.map((x, index) => {
             return (
               <li
                 key={index}
-                className="fs-14 text-dark text-bold text-light flex item-center gap-1"
+                className="fs-16 text-dark text-bold text-light flex item-center gap-1"
               >
                 {/* <img src={x.image} style={{width:"2.5rem",height:"2.5rem"}} alt="" /> */}
                 {x.image}
@@ -197,9 +196,12 @@ const LeftCenter = ({ handleSelect, dateRange }) => {
       </div>
       {/* date picker  */}
       <div className="flex column w-100 gap-1">
-        <h3 className="fs-20 text-bold">
+        <h3 className="fs-24 text-bold">
           {differnceinDays} night in {GigsDetails?.listing_location}
-          <span className="block text-grey text-light fs-14">
+          <span
+            style={{ marginTop: "1rem" }}
+            className="block text-grey text-light fs-16"
+          >
             <span>{startDate}</span> - <span>{endDate}</span>
           </span>
         </h3>
