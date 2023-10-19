@@ -507,7 +507,7 @@ const HeaderWrapper = styled.div`
   .headertop1 {
     display: none;
     padding: 0.7rem 0;
-    @media (max-width: 580px) {
+    @media (max-width: 780px) {
       padding: 0.4rem 0;
     }
     .center {
@@ -516,17 +516,17 @@ const HeaderWrapper = styled.div`
       margin: 0 auto !important;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
       border: 0.5px solid rgba(0, 0, 0, 0.08) !important;
-      @media (max-width: 580px) {
+      @media (max-width: 780px) {
         padding: 0.4rem 2rem !important ;
         border: none;
       }
     }
-    @media (max-width: 580px) {
+    @media (max-width: 780px) {
       display: flex;
     }
   }
   .headertop2 {
-    @media (max-width: 480px) {
+    @media (max-width: 780px) {
       display: none;
     }
   }
@@ -632,7 +632,7 @@ const HeaderWrapper = styled.div`
   }
   .left,
   .right {
-    @media (max-width: 480px) {
+    @media (max-width: 780px) {
       display: none;
     }
   }

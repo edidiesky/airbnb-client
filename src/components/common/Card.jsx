@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { BiChevronLeft, BiChevronRight, BiStar } from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Heart from "./svg/heart";
 import Star from "./svg/star";
 import { RxCross2 } from "react-icons/rx";
 import {
-  addProductToWish,
-  clearWishMessage,
   onWishDeleteModal,
 } from "../../Features/wish/wishSlice";
 import { DeleteBuyerReservations } from "../../Features/reservations/reservationsReducer";
 import CardSkeleton from "./cardskeleton";
 import { FaStar } from "react-icons/fa";
-import { addTowWish } from "../../Features/listing/listingSlice";
 import { addListToWish } from "../../Features/listing/listingReducer";
+import { onAuthModal } from "../../Features/user/userSlice";
 
 export default function Card({ x, index, type }) {
   const [tabindex, setTabIndex] = useState(0);
@@ -37,7 +35,12 @@ export default function Card({ x, index, type }) {
   };
 
   const handleAddToWish = () => {
-    dispatch(addListToWish(x?._id));
+    if (userInfo) {
+      dispatch(addListToWish(x?._id));
+    } else {
+      dispatch(onAuthModal());
+    }
+    
   };
   let cardid = x?._id;
 
