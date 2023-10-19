@@ -51,7 +51,7 @@ export default function Card({ x, index, type }) {
   const customerData = JSON.parse(localStorage.getItem("customer"));
 
   const active = customerData?.wishlists?.includes(x?._id);
-  console.log(active, customerData);
+  // console.log(active, customerData);
   // if the type is wish
   if (type === "wish") {
     return (
@@ -242,7 +242,7 @@ export default function Card({ x, index, type }) {
                 className="w-100 flex item-center justify-space cardTop"
               >
                 <h4
-                  className="fs-17 text-extra-bold text-dark"
+                  className="fs-16 text-extra-bold text-dark"
                 >
                   {x?.listing_city}, {x?.listing_country}
                 </h4>

@@ -50,11 +50,12 @@ export default function AuthModal({ type, click }, props) {
   const {
     userAlert,
     loginSuccess,
-    userDetails,
+    alertType,
     usernamemodal,
     isLoading,
     showAlert,
     alertText,
+    registerIsSuccess,
   } = useSelector((store) => store.user);
   const onSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +70,7 @@ export default function AuthModal({ type, click }, props) {
   };
 
   useEffect(() => {
-    if (loginSuccess) {
+    if (loginSuccess || registerIsSuccess) {
       setTimeout(() => {
         dispatch(offAuthModal());
       }, 5000);
@@ -81,7 +82,7 @@ export default function AuthModal({ type, click }, props) {
           5000
         );
     }
-  }, [loginSuccess, dispatch]);
+  }, [loginSuccess, dispatch, registerIsSuccess]);
   // open modal if type  === users
 
   useEffect(() => {
@@ -104,7 +105,6 @@ export default function AuthModal({ type, click }, props) {
       exit={{ opacity: 0, visibility: "hidden", duration: 0.6 }}
       animate={{ opacity: 1, visibility: "visible", duration: 0.6 }}
     >
-      <Message alertText={alertText} showAlert={showAlert} />
       <div className="backdrop" onClick={() => dispatch(offAuthModal())}></div>
       {isLoading && <LoaderIndex />}
       <motion.div
@@ -123,14 +123,25 @@ export default function AuthModal({ type, click }, props) {
             >
               <RxCross2 fontSize={"20px"} />
             </div>{" "}
-            <span className="text-center w-100">Login or Sign up</span>
+            <span className="text-center text-extra-bold w-100">
+              Login or Sign up
+            </span>
           </div>
         </div>
 
         <div className="w-90 authBottom auto flex column">
+          <Message
+            alertType={alertType}
+            alertText={alertText}
+            showAlert={showAlert}
+          />
           <h3 className="fs-24 py-1 text-dark text-bold">Welcome to Airbnb</h3>
 
-          <form style={{ gap: ".2rem" }} className="flex column">
+          <form
+            onSubmit={onSubmit}
+            style={{ gap: ".2rem" }}
+            className="flex column"
+          >
             {!auth ? (
               <>
                 {inputData2.slice(0, 3).map((input) => {
@@ -174,7 +185,7 @@ export default function AuthModal({ type, click }, props) {
                       value={formdata[input.name]}
                       input={input}
                       key={input.id}
-                      required={input.required}
+                      required={true}
                       pattern={input.pattern}
                       errorMessage={input.errorMessage}
                     />
@@ -184,7 +195,7 @@ export default function AuthModal({ type, click }, props) {
             )}
 
             <h5
-              style={{ margin: ".4rem auto" }}
+              style={{ margin: ".4rem auto", lineHeight: "1" }}
               className="fs-10 text-light text--grey"
             >
               We’ll call or text you to confirm your number. Standard message
@@ -194,9 +205,7 @@ export default function AuthModal({ type, click }, props) {
               </span>
             </h5>
             <button
-              // onClick={handleSubmits}
               type="submit"
-              onClick={onSubmit}
               className="btn w-100 text-bold fs-14 text-white text-center"
             >
               {" "}
@@ -204,7 +213,7 @@ export default function AuthModal({ type, click }, props) {
             </button>
           </form>
 
-          <div className="flex column gap-1" style={{ marginTop: "1.5rem" }}>
+          <div className="flex column gap-1" style={{ marginTop: "1rem" }}>
             <div className="option">or</div>
 
             <div className="flex column gap-1">
@@ -213,7 +222,9 @@ export default function AuthModal({ type, click }, props) {
                 className="authBtn flex fs-14 text-dark item-center justify-space"
               >
                 <FcGoogle fontSize={"20px"} />{" "}
-                <div className="w-100 text-center">Continue with Google</div>{" "}
+                <div className="w-100 text-bold text-center">
+                  Continue with Google
+                </div>{" "}
               </div>
             </div>
             <div className="w-100 fs-12 text-light text-grey text-center">
@@ -314,7 +325,7 @@ const DeleteContainer = styled(motion.div)`
     width: 100%;
   }
   .authTop {
-    padding: 1rem 0;
+    padding: .7rem 0;
     font-size: 14px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
@@ -339,8 +350,8 @@ const DeleteContainer = styled(motion.div)`
       position: absolute;
       right: 10px;
       top: 20px;
-      width: 3rem;
-      height: 3rem;
+      width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -350,7 +361,7 @@ const DeleteContainer = styled(motion.div)`
         background: var(--grey-4);
       }
       svg {
-        font-size: 20px;
+        font-size: 17px;
       }
     }
   }

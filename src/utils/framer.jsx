@@ -96,43 +96,63 @@ export const slideUp = {
 
 export const dropin1 = {
   hidden: {
-    top: "40%",
-    opacity: 0,
-    transition: {
-      delay: 0.5,
-    },
-  },
-  visible: {
-    top: "40%",
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      type: "spring",
-      damping: 26,
-      stiffness: 600,
-    },
-  },
-  exit: {
-    top: "0%",
-    opacity: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-export const dropin2 = {
-  hidden: {
-    top: "100%",
+    scale: 0,
+    top: "35%",
     opacity: 0,
     visibility: "hidden",
   },
   visible: {
-    top: "100%",
+    scale: 1,
+    top: "35%",
     opacity: 1,
     visibility: "visible",
   },
   exit: {
-    top: "100%",
+    scale: 0,
+    top: "35%",
+    opacity: 0,
+  },
+};
+export const dropin2 = {
+  hidden: {
+   scale:0,
+   top:"45%",
+    opacity: 0,
+    visibility: "hidden",
+  },
+  visible: {
+   scale:1,
+   top:"45%",
+    opacity: 1,
+    visibility: "visible",
+  },
+  exit: {
+   scale:0,
+   top:"45%",
+    opacity: 0,
+  },
+};
+
+
+export const errorMessage = {
+  hidden: {
+    scale: 0,
+    opacity: 0,
+    transform: "translateY(-100px)",
+    visibility: "hidden",
+    display: "none",
+  },
+  visible: {
+    scale: 1,
+    transform: "translateY(0)",
+    display: "block",
+    opacity: 1,
+    visibility: "visible",
+  },
+  exit: {
+    scale: 0,
+    transform: "translateY(-100px)",
+    display: "none",
     opacity: 0,
   },
 };

@@ -9,6 +9,8 @@ export const registerCustomer = createAsyncThunk(
   async (registerData, thunkAPI) => {
     try {
       const { data } = await axios.post(Registerurl, registerData);
+      localStorage.setItem("customer", JSON.stringify(data.user));
+      localStorage.setItem("customertoken", data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(

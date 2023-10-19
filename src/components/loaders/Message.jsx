@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { RxCross1 } from "react-icons/rx";
 import { CgDanger } from "react-icons/cg";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { motion } from "framer-motion";
+import { errorMessage } from "../../utils/framer";
 export default function Message({
   showAlert,
   alertText,
@@ -18,25 +20,44 @@ export default function Message({
   //     dispatch(handleClearAlert())
   //   }, 10000);
   // }, []);
-
-  return (
-    <MessageContent
-      className={
-        showAlert
-          ? "gap-1 flex item-center justify-space active"
-          : "gap-1 flex item-center justify-space"
-      }
-    >
-      <AiFillCheckCircle fontSize={"24px"} color="green" />
-      <div className="flex flex1 text-extra-bold text-dark">
-        {alertText}
-      </div>
-      <div className="icon" onClick={handleClearAlert}>
-        <RxCross1 />
-      </div>
-    </MessageContent>
-  );
+  if (alertType === 'danger') {
+    return (
+        <ErrorMessage
+          as={motion.div}
+          variants={errorMessage}
+          initial="hidden"
+          animate={showAlert ? "visible" : "exit"}
+          exit={"exit"}
+          className={"gap-1 flex item-center justify-space"}
+        >
+          <div className="flex fs-12 flex1 text-extra-bold">{alertText}</div>
+        </ErrorMessage>
+     
+    );
+  }
+    return (
+      <MessageContent
+        className={
+          showAlert
+            ? "gap-1 flex item-center justify-space active"
+            : "gap-1 flex item-center justify-space"
+        }
+      >
+        <AiFillCheckCircle fontSize={"24px"} color="green" />
+        <div className="flex flex1 text-extra-bold text-dark">{alertText}</div>
+        <div className="icon" onClick={handleClearAlert}>
+          <RxCross1 />
+        </div>
+      </MessageContent>
+    );
 }
+const ErrorMessage = styled(motion.div)`
+  min-width: 200px;
+  border-radius: 12px;
+  padding: 10px 20px;
+  background: #8507071d;
+  color: #b80909b1;
+`;
 
 const MessageContent = styled.div`
   min-width: 200px;

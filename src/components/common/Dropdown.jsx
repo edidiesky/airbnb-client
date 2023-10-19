@@ -20,7 +20,7 @@ const Dropdown = ({ setDrop, drop, type }) => {
     <motion.ul
       variants={type ? dropin2 : dropin1}
       initial="hidden"
-      animate="visible"
+      animate={drop ?"visible":"exit"}
       exit={"exit"}
       className="dropdown shadow flex column"
       onClick={() => setDrop(!drop)}

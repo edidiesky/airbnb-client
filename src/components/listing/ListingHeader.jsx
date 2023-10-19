@@ -5,6 +5,7 @@ import Logo2 from "../common/svg/Logo12";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../common/svg/Logo";
 import Dropdown from "../common/Dropdown";
+import { useSelector } from "react-redux";
 
 const sidebarData = [
   {
@@ -25,6 +26,7 @@ const sidebarData = [
 ];
 export default function ListingHeader({ type }) {
   const [drop, setDrop] = useState(false);
+  const {userInfo} = useSelector(store=> store.user)
 
   if (type === "dashboard") {
     return (
@@ -83,7 +85,7 @@ export default function ListingHeader({ type }) {
                   }}
                   className="fs-16 text-white flex item-center justify-center"
                 >
-                  E
+                  {userInfo?.firstname.charAt(0)}
                 </div>
               </div>
             </div>
@@ -113,15 +115,7 @@ export default function ListingHeader({ type }) {
               <Logo />
             </Link>
             <div className="flex top item-center gap-1 justify-end">
-              <AnimatePresence
-                initial="false"
-                exitBeforeEnter={true}
-                onExitComplete={() => null}
-              >
-                {drop && (
-                  <Dropdown setDrop={setDrop} drop={drop} type={"type"} />
-                )}
-              </AnimatePresence>
+              <Dropdown setDrop={setDrop} drop={drop} type={"type"} />
               <div
                 onClick={() => setDrop(!drop)}
                 style={{
@@ -144,7 +138,7 @@ export default function ListingHeader({ type }) {
                   }}
                   className="fs-16 text-white flex item-center justify-center"
                 >
-                  E
+                  {userInfo?.firstname.charAt(0)}
                 </div>
               </div>
             </div>

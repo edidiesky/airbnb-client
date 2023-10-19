@@ -137,6 +137,48 @@ export default function ListingHeader({
     }
   };
 
+  const HeaderBottomLoader =()=> {
+     return (
+       <div
+         className={
+              "w-100 HeaderBottom flex w-100 active"
+         }
+       >
+         <div className="w-90 auto  bottomWrapper item-center justify-space">
+           <div className="w-100 listing_icons hidden">
+             <SliderIndex options={options2}>
+               {categorydata.map((x, index) => {
+                 return (
+                   <div
+                     style={{ margin: "0 10px", gap: ".6rem" }}
+                     className=" flex-1 flex item-center justify-center column"
+                   >
+                     <Skeleton width={25} height={25} circle />
+                     <Skeleton width={60} height={15} />
+                   </div>
+                 ) 
+               })}
+             </SliderIndex>
+           </div>
+           <div className="fiterWrapper flex item-center justify-end">
+             <div className="fs-12 text-bold fiterIcon gap-1 text-dark flex item-center justify-center">
+               <Filter />
+               Fiters
+             </div>
+           </div>
+           <div className="fiterWrapper flex item-center justify-end">
+             <div className="fs-12 text-bold fiterIcon gap-1 text-dark flex item-center justify-center">
+               Display before total taxes
+               <div className="rightIcons">
+                 <div className="icons"></div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     );
+  }
+
   // headertop
   const HeaderTop = () => {
     return (
@@ -265,7 +307,7 @@ export default function ListingHeader({
                     alt=""
                   />
                 </div>
-              ) : userInfo?.username ? (
+              ) : userInfo?.firstname ? (
                 <div
                   style={{
                     width: "2rem",
@@ -276,7 +318,7 @@ export default function ListingHeader({
                   }}
                   className="text-white fs-13 flex item-center justify-center uppercase"
                 >
-                  {userInfo?.username.charAt(0)}
+                  {userInfo?.firstname.charAt(0)}
                 </div>
               ) : (
                 <div className="" style={{ width: "2rem", height: "2rem" }}>
@@ -298,14 +340,15 @@ export default function ListingHeader({
                   }}
                 ></div>
               )}
-
+              <Dropdown setDrop={setDrop} drop={drop} type={type} />
+              {/* 
               <AnimatePresence
                 initial="false"
                 exitBeforeEnter={true}
                 onExitComplete={() => null}
               >
                 {drop && <Dropdown setDrop={setDrop} drop={drop} type={type} />}
-              </AnimatePresence>
+              </AnimatePresence> */}
               {/* <Dropdown /> */}
             </div>
           </div>
@@ -317,24 +360,14 @@ export default function ListingHeader({
     return (
       <div
         className={
-          loader
-            ? "w-100 HeaderBottom flex w-100 active"
-            : "w-100 HeaderBottom flex w-100 "
+           "w-100 HeaderBottom flex w-100 "
         }
       >
         <div className="w-90 auto  bottomWrapper item-center justify-space">
           <div className="w-100 listing_icons hidden">
             <SliderIndex options={options2}>
               {categorydata.map((x, index) => {
-                return loader ? (
-                  <div
-                    style={{ margin: "0 10px", gap: ".6rem" }}
-                    className=" flex-1 flex item-center justify-center column"
-                  >
-                    <Skeleton width={25} height={25} circle />
-                    <Skeleton width={80} height={15} />
-                  </div>
-                ) : (
+                return (
                   <div
                     onClick={() => handleListingType(index, x.text)}
                     className={
@@ -361,7 +394,7 @@ export default function ListingHeader({
                     />
                     {x.text}
                   </div>
-                );
+                )
               })}
             </SliderIndex>
           </div>
@@ -388,6 +421,9 @@ export default function ListingHeader({
     <HeaderWrapper>
       <HeaderTop />
       {type === "Home" && <HeaderBottom />}
+      {
+        loader && <HeaderBottomLoader/>
+      }
     </HeaderWrapper>
   );
 }
@@ -407,7 +443,7 @@ const HeaderWrapper = styled.div`
   .bottomWrapper {
     display: grid;
     grid-template-columns: 1fr 50px 270px;
-    grid-gap: 1.5rem;
+    grid-gap:2rem;
     padding-top: 0.6rem;
     @media (max-width: 1080px) {
       grid-template-columns: 1fr;

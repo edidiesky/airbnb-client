@@ -107,10 +107,13 @@ const userSlice = createSlice({
     },
     [registerCustomer.fulfilled]: (state, action) => {
       //
-      state.isLoading = false;
-      state.isSuccess = true;
+      state.IsLoading = false;
+      state.registerIsSuccess = true;
       state.userInfo = action.payload.user;
       state.token = action.payload.token;
+        state.showAlert = true;
+        state.alertText = "Registration successfull.";
+        state.alertType = "success";
       state.usernamemodal = true;
     },
     [registerCustomer.rejected]: (state, action) => {
@@ -152,10 +155,6 @@ const userSlice = createSlice({
       state.users = action.payload.user;
       state.usernoOfpage = action.payload.noOfPages;
       state.totalUser = action.payload.totalUser;
-      state.showAlert = true;
-      state.alertText =
-        "All User in the data base has been successfully gotten!";
-      state.alertType = "success";
     },
     [getAllCustomer.rejected]: (state, action) => {
       state.isLoading = false;
@@ -193,8 +192,6 @@ const userSlice = createSlice({
       //
       state.isLoading = false;
       state.userDetails = action.payload.user;
-      state.showAlert = true;
-      state.alertText = `"${action.payload.user.firstname}" Your profile details has been sucessfully fetched`;
     },
     [getSingleCustomer.rejected]: (state, action) => {
       state.isLoading = false;

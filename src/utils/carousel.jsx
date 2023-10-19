@@ -1,11 +1,9 @@
 export const options2 = {
-  items: 8,
+  items: 9,
   nav: true,
   dots: false,
   loop: true,
-  // margin: 10,
-  width: "100%",
-  slideBy: 8,
+  slideBy: 9,
   responsive: {
     0: {
       items: 4,
@@ -17,7 +15,7 @@ export const options2 = {
       items: 6,
     },
     1024: {
-      items: 8,
+      items: 9,
     },
   },
 };

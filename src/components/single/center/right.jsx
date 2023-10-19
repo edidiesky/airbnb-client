@@ -167,7 +167,7 @@ const RightCenter = ({ limit, dateRange, handleCreateReservation }) => {
               </span>
             </h4>
           </div>
-          <h4 className="fs-18 text-bold text-dark family1 w-100 justify-space flex item-center">
+          <h4 className="fs-16 text-bold text-dark w-100 justify-space flex item-center">
             <span>Total before taxes</span>
             <span className="text-dark">
               $
